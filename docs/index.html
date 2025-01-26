@@ -9,5 +9,52 @@
     <h1>Hello world</h1>
     <p>First paragraph, here we go.</p>
     <p>Second paragraph</p>
+    <div id="exerciseList">Loading...</div>
+
+    <script>
+      // Fetch and display the CSV content
+      fetch('exercises.csv')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.text();
+        })
+        .then(csvContent => {
+          displayExercises(csvContent);
+        })
+        .catch(error => {
+          document.getElementById('exerciseList').innerHTML = 'Error loading data.';
+          console.error('Error fetching CSV:', error);
+        });
+  
+      function displayExercises(csvContent) {
+        const rows = csvContent.split('\n').map(row => row.split(','));
+        const [header, ...data] = rows; // Split into header and data rows
+  
+        const exerciseList = document.getElementById('exerciseList');
+        exerciseList.innerHTML = ''; // Clear loading text
+  
+        // Iterate over data rows to create exercise items
+        data.forEach(row => {
+          if (row.length >= 3) { // Ensure we have at least 3 columns (name, tags, description)
+            const [name, tags, description] = row;
+  
+            // Create a container for each exercise
+            const exerciseDiv = document.createElement('div');
+            exerciseDiv.classList.add('exercise');
+  
+            // Add name, tags, and description
+            exerciseDiv.innerHTML = `
+              <h2>${name.trim()}</h2>
+              <p class="tags">Tags: ${tags.trim()}</p>
+              <p>${description.trim()}</p>
+            `;
+  
+            exerciseList.appendChild(exerciseDiv);
+          }
+        });
+      }
+    </script>
 </body>
 </html>
