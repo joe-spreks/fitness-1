@@ -15,7 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
     <script>
       // Fetch and parse the CSV file
-      fetch('/data/exercises.csv')
+      fetch('/docs/data/exercises.csv')
         .then(response => {
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
