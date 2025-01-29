@@ -9,52 +9,14 @@
     <h1>Hello world</h1>
     <p>First paragraph, here we go.</p>
     <p>Second paragraph</p>
-    <div id="exerciseList">Loading...</div>
-
-    <!-- Include PapaParse -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
-    <script>
-      // Fetch and parse the CSV file
-      fetch('/docs/data/exercises.csv')
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return response.text();
-        })
-        .then(csvContent => {
-          Papa.parse(csvContent, {
-            header: true, // Treat the first row as headers
-            skipEmptyLines: true, // Ignore empty rows
-            complete: function(results) {
-              displayExercises(results.data); // Pass parsed data to the display function
-            },
-          });
-        })
-        .catch(error => {
-          document.getElementById('exerciseList').innerHTML = 'Error loading data.';
-          console.error('Error fetching CSV:', error);
-        });
-  
-      function displayExercises(data) {
-        const exerciseList = document.getElementById('exerciseList');
-        exerciseList.innerHTML = ''; // Clear loading text
-  
-        data.forEach(row => {
-          // Create a container for each exercise
-          const exerciseDiv = document.createElement('div');
-          exerciseDiv.classList.add('exercise');
-  
-          // Add name, tags, and description
-          exerciseDiv.innerHTML = `
-            <h2>${row.Name.trim()}</h2>
-            <p class="tags">Tags: ${row.Tags.trim()}</p>
-            <p>${row.Description.trim()}</p>
-          `;
-  
-          exerciseList.appendChild(exerciseDiv);
-        });
-      }
-    </script>
+    <h2>I want to train...</h2>
+    <h3>Biceps</h3>
+    <ul>
+    <li>Bicep curl</li>
+    <li></li>
+    </ul>
+    <h3>Chest</h3>
+    <h3>Triceps</h3>
+    <h3>Back</h3>
 </body>
 </html>
