@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dumbbell Weight Calculator</title>
+    <style>
+        .dumbbell {
+            font-family: monospace;
+            white-space: pre;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dumbbell Weight Calculator</h1>
+    <div>
+        <h2>Typical Setups</h2>
+        <div>
+            <p>-|––|- | One small each side: 3.5 kg</p>
+            <p>-i––i- | One large each side: 5.1 kg</p>
+            <p>-i|––|i- | One large and one small each side: 6.7 kg</p>
+            <p>-ii––ii- | Two large each side: 8.3 kg</p>
+            <p>-ii|––|ii- | Two large and one small each side: 9.9kg</p>
+        </div>
+    </div>
+    <div>
+        <h2>Custom Setup</h2>
+        <form id="customSetupForm">
+            <label>
+                Bar:
+                <input type="checkbox" id="bar" checked disabled> 1.9kg
+            </label><br>
+            <label>
+                <input type="checkbox" class="weight" data-weight="0.8"> Small weight (0.8kg)
+            </label><br>
+            <label>
+                <input type="checkbox" class="weight" data-weight="0.8"> Small weight (0.8kg)
+            </label><br>
+            <label>
+                <input type="checkbox" class="weight" data-weight="1.6"> Large weight (1.6kg)
+            </label><br>
+            <label>
+                <input type="checkbox" class="weight" data-weight="1.6"> Large weight (1.6kg)
+            </label><br>
+            <label>
+                <input type="checkbox" class="weight" data-weight="1.6"> Large weight (1.6kg)
+            </label><br>
+            <label>
+                <input type="checkbox" class="weight" data-weight="1.6"> Large weight (1.6kg)
+            </label><br>
+            <p>Total weight: <span id="customWeight"></span> kg</p>
+            
+            <script>
+                const barWeight = 1.9;
+            
+                function calculateCustomWeight() {
+                    let totalWeight = barWeight;
+                    document.querySelectorAll('.weight:checked').forEach(checkbox => {
+                        totalWeight += parseFloat(checkbox.getAttribute('data-weight'));
+                    });
+                    document.getElementById('customWeight').innerText = totalWeight.toFixed(1);
+                }
+            
+                document.querySelectorAll('.weight').forEach(checkbox => {
+                    checkbox.addEventListener('change', calculateCustomWeight);
+                });
+            
+                // Initial calculation
+                calculateCustomWeight();
+            </script>
+</body>
+</html>

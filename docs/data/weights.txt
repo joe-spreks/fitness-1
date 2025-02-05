@@ -1,0 +1,14 @@
+Bar = 1.9kg
+Large weight = 1.6kg each
+Small weight = 0.8kg each
+
+Typical set ups
+For each dumbell, the bar plus:
+- one small each side, -|––|-
+- one large each side, -i––i-
+- one large and one small each side, -i|––|i-
+- two large each side
+- two large and one small each side
+
+Give me a way to select exactly what combo of bar plus weights being used using checkboxes and for it to auto sum the total weight. e.g. If I'm using bar plus one small weight with would be 1.9kg + 0.8kg.
+There are only 4 large weights and two small weights available for each dumbell.
